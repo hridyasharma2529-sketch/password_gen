@@ -28,6 +28,7 @@ function App() {
 
   const copyPassword = useCallback(() => {
     window.navigator.clipboard.writeText(password)
+    ref.current.select()
   }, [password])
 
   useEffect(() => {
@@ -39,14 +40,14 @@ function App() {
       <h1>Password Generator</h1>
 
       <div className="flex shadow rounded-lg overflow-hidden">
-        <input
+        <input ref={ref}
           type="text"
           value={password}
           placeholder="password"
           readOnly
           className="outline-none rounded w-fit py-1 px-80 bg-white"
         />
-        <button ref={ref} onClick={copyPassword} className="bg-blue-500 mx-1 text-gray-500 px-4 py-1 rounded hover:bg-blue-600">
+        <button onClick={copyPassword} className="bg-blue-500 mx-1 text-gray-500 px-4 py-1 rounded hover:bg-blue-600">
           Copy
         </button>
       </div>
